@@ -1,13 +1,13 @@
 ## Wordlist Crawler 
 
-- sudo apt install cewl 
+- sudo apt install cewl
 
-- `cewl -d 1 -m 8 -w wordlist-d1m8-samecase.txt https://avengers.marvelhq.com/` 
+- `cewl -d 1 -m 8 -w wordlist-d1m8-samecase.txt https://avengers.marvelhq.com/`
 - `cewl -d 1 -m 8 -w wordlist-d1m8-lowercase.txt https://avengers.marvelhq.com/ --lowercase` 
 - `cewl -d 2 -m 8 -w wordlist-d2m8-lowercase.txt https://avengers.marvelhq.com/ --lowercase` 
 - `cewl -d 1 -m 1 -w wordlist-d1m1-lowercase.txt https://avengers.marvelhq.com/ --lowercase` 
-- `cewl -d 1 -m 1 -w wordlist-d1m1-samecase.txt https://avengers.marvelhq.com/` 
-- `cewl -d 2 -m 1 -w wordlistd2m1-d2m1-lowercase.txt https://avengers.marvelhq.com/ --lowercase` 
+- `cewl -d 1 -m 1 -w wordlist-d1m1-samecase.txt https://avengers.marvelhq.com/`
+- `cewl -d 2 -m 1 -w wordlistd2m1-d2m1-lowercase.txt https://avengers.marvelhq.com/ --lowercase`
 
 ```sh
 curl "https://avengers.marvelhq.com/" | sed 's/[^a-zA-Z ]/ /g' | tr 'A-Z ' 'a-z\n' | grep '[a-z]' | sort -u > wordlist.txt
@@ -89,6 +89,7 @@ To retrieve MAC ADDRESS, CHANNEL and ESSID use:
 - sudo service NetworkManager restart
 - iwconfig
 
+- sudo airmon-ng stop wlan0
 - ifconfig
 - sudo nmap -sP 192.168.15.0/24
 - sudo nmap -sP 192.168.15.0/24 -p 80,22

