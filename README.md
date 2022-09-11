@@ -86,16 +86,20 @@ To retrieve MAC ADDRESS, CHANNEL and ESSID use:
     - sudo aircrack-ng hack01-01.cap -w /usr/share/wordlists/rockyou.txt
 
 ## SSH Brute Force
+
+- systemctl start ssh.socket
+- systemctl stop ssh.socket
+
+- sudo airmon-ng stop wlan0
 - sudo service NetworkManager restart
 - iwconfig
 
-- sudo airmon-ng stop wlan0
 - ifconfig
 - sudo nmap -sP 192.168.15.0/24
 - sudo nmap -sP 192.168.15.0/24 -p 80,22
 
 ----- 
-- sudo nmap 192.168.15.* -p ssh --open
+- sudo nmap 192.168.0.* -p ssh --open
 
 
 - sudo nmap 192.168.15.* --open
@@ -109,3 +113,19 @@ To retrieve MAC ADDRESS, CHANNEL and ESSID use:
 
 -L list of users
 -M list of ips
+
+### Helix Fingerprint
+
+```
+Port         Transport             Protocol 
+
+22              TCP            SSH 
+5000            TCP            Helix Web Interface
+3030            TCP            Helix Orchestrator
+22443           TCP            Helix Hardware Monitor
+1026            TCP            CEF Context Broker 
+27000           TCP            MongoDB 
+5050            TCP            Cygnus
+1883            TCP            Eclipse-Mosquitto
+4041            TCP            IoT Agent MQTT 
+```
