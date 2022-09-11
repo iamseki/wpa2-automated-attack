@@ -114,6 +114,15 @@ To retrieve MAC ADDRESS, CHANNEL and ESSID use:
 -L list of users
 -M list of ips
 
+### Final Steps
+
+- sudo vim /var/www/html/index.html
+- 
+- ls -l /etc/passwd => to see owner, first column name
+- cat /etc/passwd => users
+- cat /etc/shadow => users and password hash
+
+
 ### Helix Fingerprint
 
 ```

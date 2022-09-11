@@ -17,7 +17,6 @@ func sshAttack(skipNmap bool) {
 	go func() {
 		defer wg.Done()
 		fmt.Println("scanning ssh opened ports...")
-		// nmap -n 192.168.0.* -oG - | awk '/Up$/{print $2}'
 		execCmd(fmt.Sprintf("nmap -n -p ssh --open %v -oG - | awk '/Up$/{print $2}' > open-ssh-ports.txt", IP_RANGE))
 
 		runHydraBruteForceToFiles()

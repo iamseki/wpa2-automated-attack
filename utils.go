@@ -133,8 +133,8 @@ func runWPA2BruteForceInLoop() {
 
 		if stderr != "" {
 			fmt.Println(stderr)
-			fmt.Println("Waiting for capturing handshake, trying brute force again in 30 seconds...")
-			time.Sleep(30 * time.Second)
+			fmt.Println("Waiting for capturing handshake, trying brute force again in 15 seconds...")
+			time.Sleep(15 * time.Second)
 			continue
 		}
 
